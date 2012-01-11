@@ -7,9 +7,10 @@ class Noticia extends bwRecord
         'idcategoria' => 'Categoria',
         'datahora' => 'Data/Hora',
         'titulo' => 'Título',
-        'resumo' => 'Resumo',
+        'titulo_resumido' => 'Título resumido',
+        'resumo' => 'Notícia resumida',
         'texto' => 'Notícia completa',
-        'status' => 'status',
+        'status' => 'Status',
     );
 
     public function setTableDefinition()
@@ -51,6 +52,15 @@ class Noticia extends bwRecord
             'notnull' => true,
             'unique' => true,
             'notblank' => true,
+            'autoincrement' => false,
+        ));
+        $this->hasColumn('titulo_resumido', 'string', 255, array(
+            'type' => 'string',
+            'length' => 255,
+            'fixed' => false,
+            'unsigned' => false,
+            'primary' => false,
+            'notnull' => false,
             'autoincrement' => false,
         ));
         $this->hasColumn('resumo', 'string', null, array(
