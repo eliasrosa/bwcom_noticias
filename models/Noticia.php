@@ -3,14 +3,12 @@
 class Noticia extends bwRecord
 {
     var $labels = array(
-        'id' => 'ID',
         'idcategoria' => 'Categoria',
         'datahora' => 'Data/Hora',
         'titulo' => 'Título',
         'titulo_resumido' => 'Título resumido',
         'resumo' => 'Notícia resumida',
-        'texto' => 'Notícia completa',
-        'status' => 'Status',
+        'texto' => 'Notícia completa'
     );
 
     public function setTableDefinition()
@@ -113,18 +111,21 @@ class Noticia extends bwRecord
 
         $this->setBwImagem('noticias', 'imagens');
     }
-
-    public function preHydrate(Doctrine_Event $event)
-    {
-        parent::preHydrate($event);
-
-        $dat = $event->data;
     
-        @list($dat['_date'], $dat['_hora']) = explode(' ', $dat['datahora']);
-        $dat['_date'] = bwUtil::data($dat['datahora'], false);
-        $dat['_datahora'] = bwUtil::data($dat['datahora']);
+    public function salvar($dados)
+    {
+        $db = bwComponent::save('Noticia', $dados);
+        $r = bwComponent::retorno($db);
 
-        $event->data = $dat;
+        return $r;
+    }
+
+    public function remover($dados)
+    {
+        $db = bwComponent::remover('Noticia', $dados);
+        $r = bwComponent::retorno($db);
+
+        return $r;
     }
 
 }

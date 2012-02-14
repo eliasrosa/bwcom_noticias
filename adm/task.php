@@ -7,19 +7,14 @@ $dados = bwRequest::getVar('dados', array(), 'post');
 // NOTÍCIAS
 /////////////////////////////////////////////////////////////
 
-if ($task == 'noticiaLista')
-{
-    $r = bwNoticias::getInstance()->noticiaLista();		
-}
-
 if ($task == 'noticiaSave')
 {
-    $r = bwNoticias::getInstance()->noticiaSave($dados);		
+    $r = Noticia::salvar($dados);        
 }
 
 if ($task == 'noticiaRemover')
 {
-    $r = bwNoticias::getInstance()->noticiaRemover($dados);
+    $r = Noticia::remover($dados);
     $r['redirect'] = bwRouter::_("adm.php?com=noticias&view=lista");
 }
 
@@ -29,19 +24,14 @@ if ($task == 'noticiaRemover')
 // CATEGORIAS
 /////////////////////////////////////////////////////////////
 
-if ($task == 'categoriaLista')
-{
-    $r = bwNoticias::getInstance()->categoriaLista();
-}
-
 if ($task == 'categoriaSave')
 {
-    $r = bwNoticias::getInstance()->categoriaSave($dados);
+    $r = NoticiaCategoria::salvar($dados);
 }
 
 if ($task == 'categoriaRemover')
 {
-    $r = bwNoticias::getInstance()->categoriaRemover($dados);
+    $r = NoticiaCategoria::remover($dados);
     $r['redirect'] = bwRouter::_("adm.php?com=noticias&sub=categorias&view=lista");
 }
 

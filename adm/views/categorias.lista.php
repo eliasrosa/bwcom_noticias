@@ -2,33 +2,38 @@
 defined('BW') or die("Acesso negado!");
 
 echo bwAdm::createHtmlSubMenu(1);
-?>
+echo bwButton::redirect('Criar nova categoria', 'adm.php?com=noticias&sub=categorias&view=cadastro');
 
-<?= bwButton::redirect('Criar nova categoria', 'adm.php?com=noticias&sub=categorias&view=cadastro'); ?>
+class bwGridNoticiasCategorias extends bwGrid
+{
+    function __construct()
+    {
+        parent::__construct(
+            Doctrine_Query::create()
+                ->from('NoticiaCategoria c')       
+        );
+        
+        $this->addCol('ID', 'c.id', 'tac', 50);
+        $this->addCol('Categoria', 'c.nome', NULL);
+        $this->addCol('Status', 'c.status', 'tac', 25);    
+    }
 
-<table id="dataTable01">
-	<thead>
-		<tr>
-			<th class="tac" style="width: 50px;">ID</th>
-			<th>Nome</th>
-			<th class="tac" style="width: 25px;">Status</th>
-		</tr>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
+    function col0($i)
+    {
+        return '<a href="' . bwRouter::_('adm.php?com=noticias&sub=categorias&view=cadastro&id=' . $i->id) . '">'.$i->id.'</a>';
+    }
 
-<script type="text/javascript">
-	$(document).ready(function() {
+    function col1($i)
+    {
+        return '<a href="' . bwRouter::_('adm.php?com=noticias&sub=categorias&view=cadastro&id=' . $i->id) . '">'.$i->nome.'</a>';
+    }
 
-		oTable = $('#dataTable01').dataTable($.extend($.dataTableSettings, {
-			
-		// Fixbug
-		aoColumnDefs: [{
-			sClass: "tac", aTargets: [0, 2] 
-		}],
-			sAjaxSource: "<?= bwRouter::_('adm.php?com=noticias&task=categoriaLista&' .bwRequest::getToken(). '=1') ?>"
-		}));
-		
-	});
-</script>
+    function col2($i)
+    {
+        return bwAdm::getImgStatus($i->status);
+    }
+    
+}
+
+$a = new bwGridNoticiasCategorias();
+$a->show();

@@ -2,13 +2,11 @@
 
 class NoticiaCategoria extends bwRecord
 {
-	var $labels = array(
-		'id' => 'ID',
-		'nome' => 'Nome',
-		'descricao' => 'Descrição',
-		'status' => 'status',
-	);
-	
+    var $labels = array(
+        'nome' => 'Nome',
+        'descricao' => 'Descrição'
+    );
+    
     public function setTableDefinition()
     {
         $this->setTableName('bw_noticias_categorias');
@@ -54,19 +52,27 @@ class NoticiaCategoria extends bwRecord
     {
         parent::setUp();
 
-		$this->hasMany('Noticia as Noticias', array(
-			'local' => 'id',
-			'foreign' => 'idcategoria'
-		));
-	}
-	
-	public function setNome($v)
-	{
-		return $this->_set('nome', trim($v));
-	}
-	
-	public function setDescricao($v)
-	{
-		return $this->_set('descricao', trim($v));
-	}
+        $this->hasMany('Noticia as Noticias', array(
+            'local' => 'id',
+            'foreign' => 'idcategoria'
+        ));
+    }
+    
+    public function salvar($dados)
+    {
+        $db = bwComponent::save('NoticiaCategoria', $dados);
+        $r = bwComponent::retorno($db);
+
+        return $r;
+    }
+
+    public function remover($dados)
+    {
+        $db = bwComponent::remover('NoticiaCategoria', $dados);
+        $r = bwComponent::retorno($db);
+
+        return $r;
+    }    
+    
+    
 }
