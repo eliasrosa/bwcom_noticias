@@ -13,7 +13,7 @@ if ($t)
 {
     echo '<h1>Notícias</h1>';
     echo '<h2>' . $t->titulo . '</h2>';
-    echo '<p class="data">' . $t->_datahora . '</p>';
+    echo '<p class="data">' . $t->datahora . '</p>';
 
     if (!$t->bwImagem->isError404())
     {
@@ -46,7 +46,7 @@ if ($t)
         {
             if ($i->id != $id)
             {
-                echo '<li><span class="data">' . $i->_date . ' - </span><a href="' . bwRouter::_("index.php?com=noticias&view=open&itemid=$itemid&id={$i->id}&alias=" . bwUtil::alias($i->titulo)) . '">' . $i->titulo . '</a></li>';
+                echo '<li><span class="data">' . $i->datahora . ' - </span><a href="' . bwRouter::_("index.php?com=noticias&view=open&itemid=$itemid&id={$i->id}&alias=" . bwUtil::alias($i->titulo)) . '">' . $i->titulo . '</a></li>';
             }
         }
 
