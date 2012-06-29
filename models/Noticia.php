@@ -2,6 +2,7 @@
 
 class Noticia extends bwRecord
 {
+
     var $labels = array(
         'idcategoria' => 'Categoria',
         'datahora' => 'Data/Hora',
@@ -109,9 +110,23 @@ class Noticia extends bwRecord
             'foreign' => 'id'
         ));
 
+        //
         $this->setBwImagem('noticias', 'imagens');
     }
-    
+
+    public function preHydrate(Doctrine_Event $event)
+    {
+        // executa função herdada
+        parent::preHydrate($event);
+
+        $dat = $event->data;
+
+        $dat['bwurl_open'] = sprintf('%s/noticias/%s/%s.html', 
+            BW_URL_BASE2, $dat['id'], bwUtil::alias($dat['titulo']));
+
+        $event->data = $dat;
+    }
+
     public function salvar($dados)
     {
         $db = bwComponent::save('Noticia', $dados);
