@@ -2,7 +2,7 @@
 defined('BW') or die("Acesso negado!");
 
 echo bwAdm::createHtmlSubMenu(0);
-echo bwButton::redirect('Criar nova notícia', 'adm.php?com=noticias&view=cadastro');
+echo bwButton::redirect('Criar nova notícia', '/noticias/cadastro/0');
 
 class bwGridNoticias extends bwGrid
 {
@@ -24,7 +24,7 @@ class bwGridNoticias extends bwGrid
 
     function col0($i)
     {
-        return '<a href="' . bwRouter::_('adm.php?com=noticias&view=cadastro&id=' . $i->id) . '">'.$i->id.'</a>';
+        return '<a href="' . $i->getUrl('/noticias/cadastro') . '">'.$i->id.'</a>';
     }
 
     function col1($i)
@@ -40,12 +40,12 @@ class bwGridNoticias extends bwGrid
 
     function col3($i)
     {
-        return '<a href="' . bwRouter::_('adm.php?com=noticias&view=cadastro&id=' . $i->id) . '">'.$i->titulo.'</a>';
+        return $i->titulo;
     }
 
     function col4($i)
     {
-        return '<a href="' . bwRouter::_('adm.php?com=noticias&view=cadastro&id=' . $i->Categoria->id) . '">'.$i->Categoria->nome.'</a>';
+        return $i->Categoria->nome;
     }
 
     function col5($i)

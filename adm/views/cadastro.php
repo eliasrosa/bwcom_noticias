@@ -3,10 +3,10 @@ defined('BW') or die("Acesso negado!");
 
 echo bwAdm::createHtmlSubMenu(0);
 
-$id = bwRequest::getVar('id', 0, 'get');
+$id = bwRequest::getInt('id');
 $i = bwComponent::openById('Noticia', $id);
 
-$form = new bwForm($i);
+$form = new bwForm($i, bwRouter::_('/noticias/task'));
 $form->addH2('Dados da notícia');
 $form->addInputID();
 $form->addInputDataHora('datahora');
