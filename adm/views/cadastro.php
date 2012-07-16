@@ -12,10 +12,17 @@ $form->addInputID();
 $form->addInputDataHora('datahora');
 $form->addSelectDB('idcategoria', 'NoticiaCategoria');
 $form->addInput('titulo');
+$form->addStatus();
+
+$form->addH2('Notícia resumida');
 $form->addInput('titulo_resumido');
 $form->addTextArea('resumo');
+
+$form->addH2('Notícia completa');
 $form->addEditorHTML('texto');
-$form->addStatus();
+
+$form->addSeo();
+$form->addH2('Imagem');
 $form->addInputFileImg();
 
 $form->addBottonSalvar('noticiaSave');

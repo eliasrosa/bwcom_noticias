@@ -13,6 +13,8 @@ $form->addInput('nome');
 $form->addTextArea('descricao');
 $form->addStatus();
 
+$form->addSeo();
+
 $form->addBottonSalvar('categoriaSave');
 $form->addBottonRemover('categoriaRemover');
 $form->show();

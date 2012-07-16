@@ -87,6 +87,33 @@ class Noticia extends bwRecord
             'notnull' => true,
             'autoincrement' => false,
         ));
+        $this->hasColumn('metatagalias', 'string', 255, array(
+            'type' => 'string',
+            'length' => 255,
+            'fixed' => false,
+            'unsigned' => false,
+            'primary' => false,
+            'notnull' => false,
+            'autoincrement' => false,
+        ));
+        $this->hasColumn('metatagkeywords', 'string', 255, array(
+            'type' => 'string',
+            'length' => 255,
+            'fixed' => false,
+            'unsigned' => false,
+            'primary' => false,
+            'notnull' => false,
+            'autoincrement' => false,
+        ));
+        $this->hasColumn('metatagdescription', 'string', 255, array(
+            'type' => 'string',
+            'length' => 255,
+            'fixed' => false,
+            'unsigned' => false,
+            'primary' => false,
+            'notnull' => false,
+            'autoincrement' => false,
+        ));        
     }
 
     public function setDatahora($v)
