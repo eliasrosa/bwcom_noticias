@@ -7,7 +7,6 @@ class bwNoticias extends bwComponent
     // variaveis obrigatórias
     var $id = 'noticias';
     var $nome = 'Notícias';
-    var $adm_url_default = 'adm.php?com=noticias&view=lista';
     var $adm_visivel = true;
     
     
