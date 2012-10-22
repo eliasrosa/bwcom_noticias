@@ -8,7 +8,7 @@ $task = bwRequest::getVar('task');
 
 if ($task == 'noticiaSave')
 {
-    $r = Noticia::salvar(bwRequest::getVar('dados', array()));        
+    $r = Noticia::salvar(bwRequest::getVar('dados', array()));
 }
 
 if ($task == 'noticiaRemover')

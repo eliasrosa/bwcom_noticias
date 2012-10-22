@@ -136,9 +136,11 @@ class Noticia extends bwRecord
             'local' => 'idcategoria',
             'foreign' => 'id'
         ));
-
+        
         //
-        $this->setBwImagem('noticias', 'imagens');
+        $this->addImagem();
+        $this->addGaleria();
+
     }
 
     public function salvar($dados)

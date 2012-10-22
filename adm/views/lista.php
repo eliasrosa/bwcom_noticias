@@ -19,6 +19,7 @@ class bwGridNoticias extends bwGrid
         $this->addCol('Data/Hora', 'n.datahora', 'tac', 100);
         $this->addCol('Título', 'n.titulo');
         $this->addCol('Categoria', 'c.nome', 'tac', 150);
+        $this->addCol('Galeria', NULL, 'tac', 100);    
         $this->addCol('Status', 'n.status', 'tac', 25);    
     }
 
@@ -29,7 +30,7 @@ class bwGridNoticias extends bwGrid
 
     function col1($i)
     {
-        $src = $i->bwImagem->getUrlResize('width=100&height=100');
+        $src = $i->bwImagem->default->resize(100, 100);
         return sprintf('<img src="%s" />', $src);
     }
 
@@ -49,6 +50,11 @@ class bwGridNoticias extends bwGrid
     }
 
     function col5($i)
+    {
+        return '<a href="' .$i->bwGaleria->getAdmUrl() . '">Galeria de imagens</a>';
+    }
+
+    function col6($i)
     {
         return bwAdm::getImgStatus($i->status);
     }
